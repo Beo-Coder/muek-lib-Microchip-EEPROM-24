@@ -1,4 +1,4 @@
-# Microchip EEPROM
+# Microchip EEPROM libaray
 
 ## Arduino library for Microchip EEPROMs (24...)
 
