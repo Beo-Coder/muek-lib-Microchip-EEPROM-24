@@ -1,6 +1,6 @@
 # Microchip EEPROM
 
-## Arduino library for Microchip EEPROM (24...)
+## Arduino library for Microchip EEPROMs (24...)
 
 # Features
 
