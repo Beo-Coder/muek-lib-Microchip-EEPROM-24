@@ -7,7 +7,7 @@
 - read/write single byte
 - read/write page of bytes
 - updated bytes/pages
-- Works on AVR and RP2040 boards (Arduino Uno, Nano, Mega, ... and Raspberry Pi Pico, RP2040)
+- Works on AVR and RP2040 based boards (Arduino Uno, Nano, Mega, ... and Raspberry Pi Pico, RP2040)
 
 # Usage
 
