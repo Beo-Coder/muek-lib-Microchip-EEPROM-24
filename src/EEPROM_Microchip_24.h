@@ -21,6 +21,7 @@ class EEPROM_Microchip_24 {
     uint8_t *buffer = nullptr;
 
     bool setAddress(uint16_t address);
+    void waitUntilACKSend();
 
 public:
 

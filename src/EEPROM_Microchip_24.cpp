@@ -63,7 +63,7 @@ bool EEPROM_Microchip_24::writeByte(uint16_t address, uint8_t data) {
         return false;
     }
     i2c->write(data);
-    i2c->endTransmission();
+    waitUntilACKSend();
     return true;
 }
 
@@ -74,7 +74,7 @@ bool EEPROM_Microchip_24::writePage(uint16_t startAddress, uint8_t *data, uint8_
     for (int i = 0; i < dataLength; i++) {
         i2c->write(data[i]);
     }
-    i2c->endTransmission();
+    waitUntilACKSend();
     return true;
 }
 
@@ -84,7 +84,7 @@ uint8_t EEPROM_Microchip_24::readByte(uint16_t address) {
     if (!setAddress(address)) {
         return NULL;
     }
-    i2c->endTransmission();
+    waitUntilACKSend();
     i2c->requestFrom(i2cAddress, 1);
     uint8_t data = i2c->read();
     return data;
@@ -94,10 +94,11 @@ uint8_t *EEPROM_Microchip_24::readSequentialByte(uint16_t startAddress, uint8_t 
     if (!setAddress(startAddress)) {
         return nullptr;
     }
-    i2c->endTransmission();
-    if (length > maxPageWrite) {
+    waitUntilACKSend();
+    if (length > maxPageWrite || length > 32) {
         return nullptr;
     }
+
     buffer = new uint8_t[length];
     uint8_t index = 0;
 
@@ -121,6 +122,7 @@ bool EEPROM_Microchip_24::updateByte(uint16_t address, uint8_t data) {
 
 }
 
+
 bool EEPROM_Microchip_24::updatePage(uint16_t startAddress, uint8_t *data, uint8_t length) {
     bool changed = false;
     for (int i = 0; i < length; i++) {
@@ -128,6 +130,14 @@ bool EEPROM_Microchip_24::updatePage(uint16_t startAddress, uint8_t *data, uint8
     }
 
     return changed;
+
+}
+
+void EEPROM_Microchip_24::waitUntilACKSend() {
+    uint8_t i2cReturn = 0;
+    do{
+        i2cReturn = i2c->endTransmission();
+    }while(i2cReturn == 2 || i2cReturn == 3);
 
 }
 
