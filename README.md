@@ -15,20 +15,20 @@
 ``EEPROM_Microchip_24 eeprom(<address>, <highestAddress>, <sdaPin>, <sclPin>, <maxPageWrite>);``
 
 - **address**: i2c address of eeprom chip. (set by A0, A1, A2 pins)
-- **highestAddress**: highest memory address of eeprom (64 Kbit = 0x1FFF)
+- **highestAddress**: highest memory address of eeprom (64 KBit = 0x1FFF)
 - **sdaPin**: pin of sda pin (only for boards that support different i2c pins)
 - **sclPin**: pin of scl pin (only for boards that support different i2c pins)
-- **maxPageWrite**: maximum number of bytes that can be written at once (32 for the 64 Kbit version)
+- **maxPageWrite**: maximum number of bytes that can be written at once (32 for the 64 KBit version)
 
 
 ### Initialize EEPROM:
 ``EEPROM_Microchip_24 eeprom(<addressBits>, <highestAddress>, <sdaPin>, <sclPin>, <maxPageWrite>);``
 
 - **addressBits**: last three bits of address in array (A0, A1, A2) e.g. ```{0, 0, 0}```
-- **highestAddress**: highest memory address of eeprom (64 Kbit = 0x1FFF)
+- **highestAddress**: highest memory address of eeprom (64 KBit = 0x1FFF)
 - **sdaPin**: pin of sda pin (only for boards that support different i2c pins)
 - **sclPin**: pin of scl pin (only for boards that support different i2c pins)
-- **maxPageWrite**: maximum number of bytes that can be written at once (32 for the 64 Kbit version)
+- **maxPageWrite**: maximum number of bytes that can be written at once (32 for the 64 KBit version)
 
 
 ### Write single byte
@@ -88,4 +88,4 @@ Returns ``true`` or ``false`` depending on whether a byte was changed or not.
 
 - ```update``` should be executed instead of ``write``, because EEPROM has only limited write cycles
 - Tested on Raspberry Pi Pico and Arduino Uno
-- Only tested with the 64-Kbit version (24LC64) but should also work on all other capacities
+- Only tested with the 64-KBit version (24LC64) but should also work on all other capacities
